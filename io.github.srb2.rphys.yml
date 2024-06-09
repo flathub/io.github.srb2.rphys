@@ -51,6 +51,19 @@ modules:
           type: git
           tag-pattern: ^debian\/(\d.+)$
 
+  - name: libgme
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+    sources:
+      - type: archive
+        url: https://github.com/libgme/game-music-emu/archive/refs/tags/0.6.3.tar.gz
+        sha256: 4c5a7614acaea44e5cb1423817d2889deb82674ddbc4e3e1291614304b86fca0
+        x-checker-data:
+          type: anitya
+          project-id: 866
+          stable-only: true
+          url-template: https://github.com/libgme/game-music-emu/archive/refs/tags/$version.tar.gz
+
   - name: srb2
     buildsystem: simple
     build-options:
@@ -100,7 +113,6 @@ modules:
         size: 3077652
       - type: script
         commands:
-          - unzip -o full.zip "*.dta" "*.pk3" "*.dat" "models/*" > /dev/null && rm
-            full.zip
+          - unzip -o full.zip "*.dta" "*.pk3" "*.dat" "models/*" > /dev/null && rm full.zip
           - unzip -o reveries.zip "*.pk3" > /dev/null && rm reveries.zip
         dest-filename: apply_extra
