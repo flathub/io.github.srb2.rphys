@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!-- Copyright 2020 Flathub maintainers -->
 <component type="desktop-application">
-  <id>io.github.srb2.rphys</id>
+  <id>io.github.hazepastel.reveries</id>
   <metadata_license>FSFAP</metadata_license>
   <project_license>GPL-2.0+</project_license>
   <name>SRB2 Reveries</name>
@@ -12,7 +12,7 @@
       This unofficial version is heavily modified to more closely recreate the gameplay seen in the classic games SRB2 was inspired by.
     </p>
   </description>
-  <launchable type="desktop-id">io.github.srb2.rphys.desktop</launchable>
+  <launchable type="desktop-id">io.github.hazepastel.reveries.desktop</launchable>
   <screenshots>
     <screenshot type="default">
       <image>https://srb2.org/wp-content/uploads/srb2-title.png</image>
