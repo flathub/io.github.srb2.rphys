@@ -79,9 +79,9 @@ modules:
           - lsdl2srb2 "$@"
         dest-filename: reveries.sh
       - type: file
-        path: io.github.hazepastel.reveries.desktop
+        path: io.github.srb2.rphys.desktop
       - type: file
-        path: io.github.hazepastel.reveries.metainfo.xml
+        path: io.github.srb2.rphys.metainfo.xml
 
   - name: srb2-assets
     buildsystem: simple
