@@ -6,7 +6,8 @@ command: srb2reveries
 finish-args:
   - --share=ipc
   - --share=network
-  - --socket=x11
+  - --socket=wayland
+  - --socket=fallback-x11
   - --socket=pulseaudio
   - --device=all
   - --persist=.srb2
@@ -72,8 +73,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/candelavla/srb2
-        tag: f4a
-        commit: 3e236930d8b8041d225b080bbaa2f6ca48748947
+        tag: f4b
+        commit: 7c7ebdfacbf057a0dd72bd333616328aa7351b3d
       - type: script
         commands:
           - export SRB2WADDIR=/app/bin
