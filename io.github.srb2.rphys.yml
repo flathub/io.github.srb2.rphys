@@ -46,8 +46,8 @@ modules:
     sources:
       - type: git
         url: https://salsa.debian.org/miniupnp-team/miniupnpc.git
-        commit: d76660fe1ad6f515242149722bbc8d45692ddd0d
-        tag: debian/2.2.8-1
+        commit: 0b8e643526b60ee873ef0e9651818b32d0f9892b
+        tag: debian/2.2.8-2
         x-checker-data:
           type: git
           tag-pattern: ^debian\/(\d.+)$
