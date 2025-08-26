@@ -43,6 +43,7 @@
     <binary>srb2reveries</binary>
   </provides>
   <releases>
+    <release version="f5" date="2025-08-26" />
     <release version="f4c" date="2025-05-15" />
     <release version="f4b" date="2025-02-28" />
     <release version="f4a" date="2025-01-27" />
