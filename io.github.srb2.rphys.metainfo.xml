@@ -15,10 +15,6 @@
   <launchable type="desktop-id">io.github.srb2.rphys.desktop</launchable>
   <screenshots>
     <screenshot type="default">
-      <image>https://srb2.org/wp-content/uploads/srb2-title.png</image>
-      <caption>I changed a lot of things. The title screen was not one of them.</caption>
-    </screenshot>
-    <screenshot>
       <image>https://raw.githubusercontent.com/flathub/io.github.srb2.rphys/master/images/acz1.png</image>
       <caption>Sonic speeds towards a tunnel in Arid Canyon Zone.</caption>
     </screenshot>
@@ -35,14 +31,15 @@
       <caption>Compatible with most mods for vanilla SRB2!</caption>
     </screenshot>
   </screenshots>
-  <url type="homepage">https://codeberg.org/lavla/cherry</url>
-  <url type="bugtracker">https://codeberg.org/lavla/cherry/issues</url>
-  <url type="vcs-browser">https://codeberg.org/lavla/cherry</url>
+  <url type="homepage">https://codeberg.org/candela/cherry</url>
+  <url type="bugtracker">https://codeberg.org/candela/cherry/issues</url>
+  <url type="vcs-browser">https://codeberg.org/candela/cherry</url>
   <developer_name>candelavla (Reveries), Sonic Team Junior (SRB2)</developer_name>
   <provides>
     <binary>srb2reveries</binary>
   </provides>
   <releases>
+    <release version="f5a" date="2025-10-03" />
     <release version="f5" date="2025-08-26" />
     <release version="f4c" date="2025-05-15" />
     <release version="f4b" date="2025-02-28" />

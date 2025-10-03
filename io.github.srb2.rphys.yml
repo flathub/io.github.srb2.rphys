@@ -1,6 +1,6 @@
 app-id: io.github.srb2.rphys
 runtime: org.freedesktop.Platform
-runtime-version: '24.08'
+runtime-version: '25.08'
 sdk: org.freedesktop.Sdk
 command: srb2reveries
 finish-args:
@@ -73,8 +73,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/candelavla/srb2
-        tag: f5
-        commit: 7f1aa3b92564601699a6bd8b31c5886bff12cb9d
+        tag: f5a
+        commit: b91b7164bfe98ef2dd896c4fc5556a4a36bbd0ef
       - type: script
         commands:
           - export SRB2WADDIR=/app/bin
