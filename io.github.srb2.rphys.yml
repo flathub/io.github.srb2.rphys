@@ -73,8 +73,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/candelavla/srb2
-        tag: f5a
-        commit: b91b7164bfe98ef2dd896c4fc5556a4a36bbd0ef
+        tag: f6
+        commit: 08639692bb65896d0062270a63cb4aecbdc799c3
       - type: script
         commands:
           - export SRB2WADDIR=/app/bin

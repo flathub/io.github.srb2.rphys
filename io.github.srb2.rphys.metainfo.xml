@@ -31,14 +31,15 @@
       <caption>Compatible with most mods for vanilla SRB2!</caption>
     </screenshot>
   </screenshots>
-  <url type="homepage">https://codeberg.org/candela/cherry</url>
-  <url type="bugtracker">https://codeberg.org/candela/cherry/issues</url>
-  <url type="vcs-browser">https://codeberg.org/candela/cherry</url>
+  <url type="homepage">https://mb.srb2.org/addons/reveries.4008/</url>
+  <url type="bugtracker">https://codeberg.org/cande/cherry/issues</url>
+  <url type="vcs-browser">https://codeberg.org/cande/cherry</url>
   <developer_name>candelavla (Reveries), Sonic Team Junior (SRB2)</developer_name>
   <provides>
     <binary>srb2reveries</binary>
   </provides>
   <releases>
+    <release version="f6" date="2026-03-21" />
     <release version="f5a" date="2025-10-03" />
     <release version="f5" date="2025-08-26" />
     <release version="f4c" date="2025-05-15" />
