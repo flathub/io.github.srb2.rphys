@@ -51,6 +51,94 @@ modules:
         x-checker-data:
           type: git
           tag-pattern: ^debian\/(\d.+)$
+          
+  - name: game-music-emu
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+      - -DBUILD_SHARED_LIBS=YES
+      - -DGME_BUILD_STATIC=NO
+      - -DGME_YM2612_EMU=GENS
+    sources:
+      - type: archive
+        url: https://github.com/libgme/game-music-emu/archive/refs/tags/0.6.4.tar.gz
+        sha256: f2360feb5a32ace226c583df4faf6eff74145c81264aaea11e17a1af2f6f101a
+        x-checker-data:
+          type: anitya
+          project-id: 866
+          stable-only: true
+          url-template: https://github.com/libgme/game-music-emu/archive/refs/tags/$version.tar.gz
+    cleanup:
+      - /lib/libgme.so
+      - /include/gme
+      - /lib/pkgconfig
+    
+  - name: timidity-cfg
+    buildsystem: simple
+    sources:
+      - type: inline
+        dest-filename: timidity.cfg
+        contents: soundfont /app/bin/soundfonts/8bitsf.SF2
+    build-commands:
+      - install -D --mode=644 timidity.cfg -t /app/share/timidity/
+   
+  - name: fluidsynth
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=Release
+    sources:
+      - type: archive
+        url: https://github.com/FluidSynth/fluidsynth/archive/v2.6.0.tar.gz
+        sha256: 6d17570ea2086dd6fbcac995465773a6f316e689089b7fb7ba0b34c2ec6f680d
+        x-checker-data:
+          stable-only: true
+          url-template: https://github.com/FluidSynth/fluidsynth/archive/$version.tar.gz
+      - type: git
+        url: https://github.com/kthohr/gcem.git
+        tag: v1.18.0
+        commit: 012ae73c6d0a2cb09ffe86475f5c6fba3926e200
+        dest: gcem
+        x-checker-data:
+          type: git
+          tag-pattern: "^v([\\d.]+)$"
+   
+  - name: sdl-mixer-x
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts: 
+      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+      - -DSDL_MIXER_X_SHARED=ON
+      - -DMIXERX_ENABLE_GPL=ON
+      - -DMIXERX_DISABLE_SIMD=ON
+      - -DUSE_SYSTEM_SDL2=ON
+      - -DUSE_MIDI_FLUIDSYNTH=ON
+      - -DUSE_MIDI_FLUIDLITE=OFF
+    sources:
+      - type: git
+        url: https://github.com/WohlSoft/SDL-Mixer-X.git
+        tag: 2.6.0
+        commit: 7181c771aa29deaea8bfbe6098613c3a929e9189
+        x-checker-data:
+          type: git
+          tag-pattern: ^([\\d.]+)$
+    cleanup:
+      - /lib/pkgconfig
+      - /lib/libSDL2_mixer_ext.so
+      - /lib/cmake
+      - /include
+
+  - name: soundfont
+    disabled: false
+    sources:
+      - type: file
+        url: https://musical-artifacts.com/artifacts/23/8bitsf.SF2
+        mirror-urls:
+          - https://archive.org/download/free-soundfonts-sf2-2019-04/8bitsf.SF2
+        sha256: 3394f3436ffcec4ab094949942dc601d6f20ef4595af3291230b7261ff89bb2c
+    buildsystem: simple
+    build-commands:
+      - install -D --mode=644 8bitsf.SF2 -t $FLATPAK_DEST/bin/soundfonts/
 
   - name: srb2
     buildsystem: simple
@@ -63,7 +151,7 @@ modules:
           env:
             ARCH_MAKE_ARGS: LINUX64=1 X86_64=1
     build-commands:
-      - make -C src -j $FLATPAK_BUILDER_N_JOBS NOGME=1 $ARCH_MAKE_ARGS
+      - make -C src -j $FLATPAK_BUILDER_N_JOBS HAXE_MIXERX=1 $ARCH_MAKE_ARGS
       - install -D -m 755 -t $FLATPAK_DEST/bin bin/srb2rvre
       - install -D -m 755 -t $FLATPAK_DEST/bin reveries.pk3
       - install -D -m 644 srb2.png $FLATPAK_DEST/share/icons/hicolor/256x256/apps/$FLATPAK_ID.png
@@ -78,7 +166,7 @@ modules:
       - type: script
         commands:
           - export SRB2WADDIR=/app/bin
-          - srb2rvre "$@"
+          - srb2rvre +midisoundfont /app/bin/soundfonts/8bitsf.SF2 +midiplayer Fluidsynth -useUPnP "$@"
         dest-filename: reveries.sh
       - type: file
         path: io.github.srb2.rphys.desktop
