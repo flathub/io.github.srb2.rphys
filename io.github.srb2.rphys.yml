@@ -150,7 +150,9 @@ modules:
           env:
             ARCH_MAKE_ARGS: LINUX64=1 X86_64=1
     build-commands:
-      - make -C src -j $FLATPAK_BUILDER_N_JOBS HAXE_MIXERX=1 $ARCH_MAKE_ARGS
+      - install -D -m 644 SDL_mixer.h -t src/
+      - install -D -m 644 SDL_mixer_ext.h -t src/sdl/
+      - make -C src -j $FLATPAK_BUILDER_N_JOBS HAVE_MIXERX=1 $ARCH_MAKE_ARGS
       - install -D -m 755 -t $FLATPAK_DEST/bin bin/srb2rvre
       - install -D -m 755 -t $FLATPAK_DEST/bin reveries.pk3
       - install -D -m 644 srb2.png $FLATPAK_DEST/share/icons/hicolor/256x256/apps/$FLATPAK_ID.png
@@ -158,6 +160,12 @@ modules:
       - install -D -m 644 -t $FLATPAK_DEST/share/applications $FLATPAK_ID.desktop
       - install -D -m 644 -t $FLATPAK_DEST/share/metainfo $FLATPAK_ID.metainfo.xml
     sources:
+      - type: file
+        url: https://raw.githubusercontent.com/WohlSoft/SDL-Mixer-X/refs/heads/master/include/SDL_mixer_ext/SDL_mixer_ext.h
+        sha256: aaec5e563c7e073b3c953f84ad39533124c86bf9b8c31354d737b4d3dc97bc7b
+      - type: file
+        url: https://raw.githubusercontent.com/WohlSoft/SDL-Mixer-X/refs/heads/master/include/SDL_mixer.h
+        sha256: 9e53177362fde3d7dd1bf255e64d96340fe9b7e72ac13fcb0973226128e84ab0
       - type: git
         url: https://github.com/candelavla/srb2
         tag: f7
