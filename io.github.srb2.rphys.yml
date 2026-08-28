@@ -51,7 +51,7 @@ modules:
         x-checker-data:
           type: git
           tag-pattern: ^debian\/(\d.+)$
-          
+
   - name: game-music-emu
     buildsystem: cmake-ninja
     config-opts:
@@ -61,8 +61,8 @@ modules:
       - -DGME_YM2612_EMU=GENS
     sources:
       - type: archive
-        url: https://github.com/libgme/game-music-emu/archive/refs/tags/0.6.4.tar.gz
-        sha256: f2360feb5a32ace226c583df4faf6eff74145c81264aaea11e17a1af2f6f101a
+        url: https://github.com/libgme/game-music-emu/archive/refs/tags/0.6.5.tar.gz
+        sha256: 8531678502451c2cf04248cda45c8b4645e19fcfb63e6a7ec2549641c47bb392
         x-checker-data:
           type: anitya
           project-id: 866
@@ -72,7 +72,7 @@ modules:
       - /lib/libgme.so
       - /include/gme
       - /lib/pkgconfig
-    
+
   - name: timidity-cfg
     buildsystem: simple
     sources:
@@ -81,7 +81,7 @@ modules:
         contents: soundfont /app/bin/soundfonts/8bitsf.SF2
     build-commands:
       - install -D --mode=644 timidity.cfg -t /app/share/timidity/
-   
+
   - name: fluidsynth
     buildsystem: cmake-ninja
     builddir: true
@@ -101,12 +101,11 @@ modules:
         dest: gcem
         x-checker-data:
           type: git
-          tag-pattern: "^v([\\d.]+)$"
-   
+          tag-pattern: ^v([\d.]+)$
   - name: sdl-mixer-x
     buildsystem: cmake-ninja
     builddir: true
-    config-opts: 
+    config-opts:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
       - -DSDL_MIXER_X_SHARED=ON
       - -DMIXERX_ENABLE_GPL=ON
@@ -174,7 +173,8 @@ modules:
       - type: script
         commands:
           - export SRB2WADDIR=/app/bin
-          - srb2rvre +midisoundfont /app/bin/soundfonts/8bitsf.SF2 +midiplayer Fluidsynth -useUPnP "$@"
+          - srb2rvre +midisoundfont /app/bin/soundfonts/8bitsf.SF2 +midiplayer Fluidsynth
+            -useUPnP "$@"
         dest-filename: reveries.sh
       - type: file
         path: io.github.srb2.rphys.desktop
