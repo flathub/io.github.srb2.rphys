@@ -73,15 +73,6 @@ modules:
       - /include/gme
       - /lib/pkgconfig
 
-  - name: timidity-cfg
-    buildsystem: simple
-    sources:
-      - type: inline
-        dest-filename: timidity.cfg
-        contents: soundfont /app/bin/soundfonts/8bitsf.SF2
-    build-commands:
-      - install -D --mode=644 timidity.cfg -t /app/share/timidity/
-
   - name: fluidsynth
     buildsystem: cmake-ninja
     builddir: true
@@ -92,6 +83,7 @@ modules:
         url: https://github.com/FluidSynth/fluidsynth/archive/v2.6.0.tar.gz
         sha256: 6d17570ea2086dd6fbcac995465773a6f316e689089b7fb7ba0b34c2ec6f680d
         x-checker-data:
+          type: anitya
           stable-only: true
           url-template: https://github.com/FluidSynth/fluidsynth/archive/$version.tar.gz
       - type: git
@@ -102,6 +94,7 @@ modules:
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
+
   - name: sdl-mixer-x
     buildsystem: cmake-ninja
     builddir: true
@@ -127,18 +120,6 @@ modules:
       - /lib/cmake
       - /include
 
-  - name: soundfont
-    disabled: false
-    sources:
-      - type: file
-        url: https://musical-artifacts.com/artifacts/23/8bitsf.SF2
-        mirror-urls:
-          - https://archive.org/download/free-soundfonts-sf2-2019-04/8bitsf.SF2
-        sha256: 3394f3436ffcec4ab094949942dc601d6f20ef4595af3291230b7261ff89bb2c
-    buildsystem: simple
-    build-commands:
-      - install -D --mode=644 8bitsf.SF2 -t $FLATPAK_DEST/bin/soundfonts/
-
   - name: srb2
     buildsystem: simple
     build-options:
@@ -154,7 +135,8 @@ modules:
       - install -D -m 644 SDL_mixer_ext.h -t src/sdl/
       - make -C src -j $FLATPAK_BUILDER_N_JOBS HAVE_MIXERX=1 $ARCH_MAKE_ARGS
       - install -D -m 755 -t $FLATPAK_DEST/bin bin/srb2rvre
-      - install -D -m 755 -t $FLATPAK_DEST/bin reveries.pk3
+      - install -D -m 755 -t $FLATPAK_DEST/bin assets/reveries.pk3
+      - install -D -m 755 -t $FLATPAK_DEST/bin/soundfonts assets/SEGAudio.sf2
       - install -D -m 644 srb2.png $FLATPAK_DEST/share/icons/hicolor/256x256/apps/$FLATPAK_ID.png
       - install -D -m 755 reveries.sh $FLATPAK_DEST/bin/srb2reveries
       - install -D -m 644 -t $FLATPAK_DEST/share/applications $FLATPAK_ID.desktop
@@ -168,13 +150,12 @@ modules:
         sha256: 9e53177362fde3d7dd1bf255e64d96340fe9b7e72ac13fcb0973226128e84ab0
       - type: git
         url: https://github.com/candelavla/srb2
-        tag: f7
-        commit: 924f3ad2546f3042c148f6440fd011bd9714a3bb
+        tag: f7a
+        commit: 7d0836898e17fb7d7bbbcaf68988b052a461397b
       - type: script
         commands:
           - export SRB2WADDIR=/app/bin
-          - srb2rvre +midisoundfont /app/bin/soundfonts/8bitsf.SF2 +midiplayer Fluidsynth
-            -useUPnP "$@"
+          - srb2rvre +midisoundfont /app/bin/soundfonts/SEGAudio.sf2 +midiplayer Fluidsynth -useUPnP "$@"
         dest-filename: reveries.sh
       - type: file
         path: io.github.srb2.rphys.desktop
