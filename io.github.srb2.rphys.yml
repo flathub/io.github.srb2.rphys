@@ -28,13 +28,15 @@ modules:
       - /share/doc
     sources:
       - type: archive
-        url: https://lib.openmpt.org/files/libopenmpt/src/libopenmpt-0.8.9+release.autotools.tar.gz
-        sha256: d7ce84fd05d686c4bcf66af40eae857afa371442db60eeda3f874bd6cf6fc318
+        url: 
+          https://lib.openmpt.org/files/libopenmpt/src/libopenmpt-0.8.10+release.autotools.tar.gz
+        sha256: 976d259288c40cd285771f77d09eff3d02514511d5677ecfcfb53be5013317e2
         x-checker-data:
           type: anitya
           project-id: 141468
           stable-only: true
-          url-template: https://lib.openmpt.org/files/libopenmpt/src/libopenmpt-$version+release.autotools.tar.gz
+          url-template: 
+            https://lib.openmpt.org/files/libopenmpt/src/libopenmpt-$version+release.autotools.tar.gz
 
   - name: miniupnpc
     buildsystem: cmake-ninja
@@ -143,10 +145,12 @@ modules:
       - install -D -m 644 -t $FLATPAK_DEST/share/metainfo $FLATPAK_ID.metainfo.xml
     sources:
       - type: file
-        url: https://raw.githubusercontent.com/WohlSoft/SDL-Mixer-X/refs/heads/master/include/SDL_mixer_ext/SDL_mixer_ext.h
+        url: 
+          https://raw.githubusercontent.com/WohlSoft/SDL-Mixer-X/refs/heads/master/include/SDL_mixer_ext/SDL_mixer_ext.h
         sha256: aaec5e563c7e073b3c953f84ad39533124c86bf9b8c31354d737b4d3dc97bc7b
       - type: file
-        url: https://raw.githubusercontent.com/WohlSoft/SDL-Mixer-X/refs/heads/master/include/SDL_mixer.h
+        url: 
+          https://raw.githubusercontent.com/WohlSoft/SDL-Mixer-X/refs/heads/master/include/SDL_mixer.h
         sha256: 9e53177362fde3d7dd1bf255e64d96340fe9b7e72ac13fcb0973226128e84ab0
       - type: git
         url: https://github.com/candelavla/srb2
@@ -155,7 +159,8 @@ modules:
       - type: script
         commands:
           - export SRB2WADDIR=/app/bin
-          - srb2rvre +midisoundfont /app/bin/soundfonts/SEGAudio.sf2 +midiplayer Fluidsynth -useUPnP "$@"
+          - srb2rvre +midisoundfont /app/bin/soundfonts/SEGAudio.sf2 +midiplayer Fluidsynth
+            -useUPnP "$@"
         dest-filename: reveries.sh
       - type: file
         path: io.github.srb2.rphys.desktop
