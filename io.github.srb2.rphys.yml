@@ -84,8 +84,9 @@ modules:
         sha256: 6d17570ea2086dd6fbcac995465773a6f316e689089b7fb7ba0b34c2ec6f680d
         x-checker-data:
           type: anitya
+          project-id: 10437
           stable-only: true
-          url-template: https://github.com/FluidSynth/fluidsynth/archive/$version.tar.gz
+          url-template: https://github.com/FluidSynth/fluidsynth/archive/v$version.tar.gz
       - type: git
         url: https://github.com/kthohr/gcem.git
         tag: v1.18.0
