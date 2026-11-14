@@ -80,8 +80,8 @@ modules:
       - -DCMAKE_BUILD_TYPE=Release
     sources:
       - type: archive
-        url: https://github.com/FluidSynth/fluidsynth/archive/v2.6.0.tar.gz
-        sha256: 6d17570ea2086dd6fbcac995465773a6f316e689089b7fb7ba0b34c2ec6f680d
+        url: https://github.com/FluidSynth/fluidsynth/archive/v2.6.2.tar.gz
+        sha256: ca376b42a3c1b186a4c8c248931789a455ac94a89b777394969d678010c2f91f
         x-checker-data:
           type: anitya
           project-id: 10437
